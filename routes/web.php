@@ -19,3 +19,11 @@ Route::get('/', function () {
 });
 
 Route::get('/login', [LoginController::class, "index"])->name('login');
+Route::post('/login', [LoginController::class, 'authenticate']);
+
+Route::get('/dashboard', function(){
+    return view('home_page.index', [
+        'title' => 'Beranda',
+        'active' => 'home'
+    ]);
+}) -> middleware('auth');
