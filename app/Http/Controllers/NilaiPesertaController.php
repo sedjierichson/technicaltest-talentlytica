@@ -13,7 +13,11 @@ class NilaiPesertaController extends Controller
      */
     public function index()
     {
-        //
+        return view('nilai_peserta.index',[
+            'title' => 'Nilai Peserta',
+            'active' => '',
+            'nilaipesertas' => NilaiPeserta::all()
+        ]);
     }
 
     /**

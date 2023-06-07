@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\NilaiPesertaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,5 @@ Route::get('/dashboard', function(){
         'active' => 'home'
     ]);
 }) -> middleware('auth');
+
+Route::resource('/nilaipeserta', NilaiPesertaController::class);
