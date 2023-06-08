@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\NilaiPeserta;
+use App\Http\Requests\StoreNilaiPesertaRequest;
+use App\Http\Requests\UpdateNilaiPesertaRequest;
 use Illuminate\Http\Request;
 
 class NilaiPesertaController extends Controller
@@ -55,9 +57,10 @@ class NilaiPesertaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(NilaiPeserta $nilaiPeserta)
+    public function edit($id)
     {
-        //
+        $data = NilaiPeserta::where('id', $id)->first();
+        return \response()->json(['result'=>$data]);
     }
 
     /**
@@ -65,8 +68,17 @@ class NilaiPesertaController extends Controller
      */
     public function update(Request $request, $id)
     {   
-        NilaiPeserta::where('id', $id)->update($request);
-        return redirect('/nilaipeserta');
+        // return $id;
+        $data = [
+            'nama'=> $request->nama,
+            'email'=> $request->email,
+            'nilai_x'=> $request->nilai_x,
+            'nilai_y'=> $request->nilai_y,
+            'nilai_z'=> $request->nilai_z,
+            'nilai_w'=> $request->nilai_w,
+        ];
+        NilaiPeserta::where('id', $id)->update($data);
+        return response()->json(['success'=>'Berhasil update data']);
     }
 
     /**

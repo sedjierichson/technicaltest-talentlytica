@@ -275,36 +275,44 @@
             $(
                 '#laporanModal #nilai_w').val($(this).data('nilaiw'));
         });
+
         $(document).on('click', '.edit', function(event) {
             event.preventDefault();
-            editEvent = event;
-            $('#editDataModal').modal('show');
-            $('#editDataNilai #id_nilai').val($(this).data('id'));
-            $('#editDataNilai #nama').val($(this).data('nama'));
-            $('#editDataNilai #email').val($(this).data('email'));
-            $('#editDataNilai #nilai_x').val($(this).data('nilaix'));
-            $('#editDataNilai #nilai_y').val($(this).data('nilaiy'));
-            $('#editDataNilai #nilai_z').val($(this).data('nilaiz'));
-            $('#editDataNilai #nilai_w').val($(this).data('nilaiw'));
+            var id = $(this).data('id');
+            $.ajax({
+                type: 'GET',
+                url: '/nilaipeserta/' + id + '/edit',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(response) {
+                    $('#editDataModal').modal('show');
+                    $('#editDataNilai #id_nilai').val(response.result.id);
+                    $('#editDataNilai #nama').val(response.result.nama);
+                    $('#editDataNilai #email').val(response.result.email);
+                    $('#editDataNilai #nilai_x').val(response.result.nilai_x);
+                    $('#editDataNilai #nilai_y').val(response.result.nilai_y);
+                    $('#editDataNilai #nilai_z').val(response.result.nilai_z);
+                    $('#editDataNilai #nilai_w').val(response.result.nilai_w);
+                }
+            });
         });
+
         $('#editDataNilai').on('submit', function(e) {
             e.preventDefault();
             var form = $(this).serialize();
-
             $.ajax({
                 method: 'PUT',
-                url: "/nilaipeserta/" + $(this).data('id'),
+                url: "/nilaipeserta/" + $('#editDataNilai #id_nilai').val(),
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 data: form,
-                dataType: 'json',
                 success: function(response) {
                     console.log(response);
                 },
                 error: function(request, status, error) {
                     console.log(error);
-                    alert("Not Ok");
                 }
             });
         });
