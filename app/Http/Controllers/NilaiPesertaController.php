@@ -17,7 +17,7 @@ class NilaiPesertaController extends Controller
         return view('nilai_peserta.index',[
             'title' => 'Nilai Peserta',
             'active' => '',
-            'nilaipesertas' => NilaiPeserta::all()
+            'nilaipesertas' => NilaiPeserta::latest()->paginate(10)
         ]);
     }
 

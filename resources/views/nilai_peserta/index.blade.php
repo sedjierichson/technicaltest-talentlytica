@@ -13,7 +13,7 @@
     @endif
     <div class="row justify-content-center">
         <div class="col">
-            <div class="table-responsive justify-content-center mb-5">
+            <div class="table-responsive justify-content-center mb-2">
                 <table class="table table-bordered text-center pt-3" id="listTable">
                     <thead style="background-color: #363636; color:#ffffff;">
                         <tr>
@@ -65,6 +65,7 @@
             </div>
         </div>
     </div>
+    {{ $nilaipesertas->links() }}
 @endsection
 
 @section('other')
@@ -219,7 +220,10 @@
 @section('included-js')
     <script type="text/javascript">
         var editEvent;
-        var table = $('#listTable').DataTable();
+        var table = $('#listTable').DataTable({
+            'bPaginate': false,
+            'bInfo': false
+        });
         $(document).on('click', '.info', function(event) {
             event.preventDefault();
             editEvent = event;
