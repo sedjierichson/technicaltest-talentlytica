@@ -63,19 +63,18 @@ class NilaiPesertaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateNilaiPesertaRequest $request, NilaiPeserta $nilaiPeserta)
-    {
-        //
+    public function update(Request $request, $id)
+    {   
+        NilaiPeserta::where('id', $id)->update($request);
+        return redirect('/nilaipeserta');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(NilaiPeserta $nilai)
+    public function destroy(NilaiPeserta $nilai, $id)
     {
-        return $nilai->nama;
-        // NilaiPeserta::where('id', $nilaiPeserta->id)->delete();
-        if (NilaiPeserta::destroy($nilai)){
+        if (NilaiPeserta::destroy($id)){
             return redirect('/nilaipeserta')->with('success', 'Data berhasil dihapus!');
         }
         return redirect('/nilaipeserta')->with('error', 'Coba lagi!');
