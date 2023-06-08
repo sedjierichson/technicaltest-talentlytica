@@ -150,22 +150,8 @@
                                 </tr>
                             </thead>
                             <tbody id="memberKategori">
-                                <tr>
-                                    <td>Aspek Inteligensi</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>Aspek Numerical</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+                                <tr id="aspekInteligensi"></tr>
+                                <tr id="aspekNumerical"></tr>
                             </tbody>
                         </table>
                     </div>
@@ -242,6 +228,38 @@
                 'nilaiw') * 0.7)) / 2);
             console.log(aspekInteligensi);
             console.log(aspekNumerical);
+            if (aspekInteligensi == 1) {
+                $('#aspekInteligensi').empty().append(
+                    '<td>Aspek Inteligensi</td> <td>v</td> <td></td> <td></td> <td></td> <td></td>');
+            } else if (aspekInteligensi == 2) {
+                $('#aspekInteligensi').empty().append(
+                    '<td>Aspek Inteligensi</td> <td></td> <td>v</td> <td></td> <td></td> <td></td>');
+            } else if (aspekInteligensi == 3) {
+                $('#aspekInteligensi').empty().append(
+                    '<td>Aspek Inteligensi</td> <td></td> <td></td> <td>v</td> <td></td> <td></td>');
+            } else if (aspekInteligensi == 4) {
+                $('#aspekInteligensi').empty().append(
+                    '<td>Aspek Inteligensi</td> <td></td> <td></td> <td></td> <td>v</td> <td></td>');
+            } else if (aspekInteligensi >= 5) {
+                $('#aspekInteligensi').empty().append(
+                    '<td>Aspek Inteligensi</td> <td></td> <td></td> <td></td> <td></td> <td>v</td>');
+            }
+            if (aspekNumerical == 1) {
+                $('#aspekNumerical').empty().append(
+                    '<td>Aspek Numerical</td> <td>v</td> <td></td> <td></td> <td></td> <td></td>');
+            } else if (aspekNumerical == 2) {
+                $('#aspekNumerical').empty().append(
+                    '<td>Aspek Numerical</td> <td></td> <td>v</td> <td></td> <td></td> <td></td>');
+            } else if (aspekNumerical == 3) {
+                $('#aspekNumerical').empty().append(
+                    '<td>Aspek Numerical</td> <td></td> <td></td> <td>v</td> <td></td> <td></td>');
+            } else if (aspekNumerical == 4) {
+                $('#aspekNumerical').empty().append(
+                    '<td>Aspek Numerical</td> <td></td> <td></td> <td></td> <td>v</td> <td></td>');
+            } else if (aspekNumerical >= 5) {
+                $('#aspekNumerical').empty().append(
+                    '<td>Aspek Numerical</td> <td></td> <td></td> <td></td> <td></td> <td>v</td>');
+            }
             $('#laporanModal')
                 .modal(
                     'show');
