@@ -5,6 +5,9 @@
         <a class="btn" data-bs-toggle="modal" data-bs-target="#tambahDataModal" style="background-color: #ffa133">Tambah
             Data</a>
     </div>
+    @if (session()->has('success'))
+        <div class="alert alert-success col-lg-8" role="alert">{{ session('success') }}</div>
+    @endif
     <div class="row justify-content-center">
         <div class="col">
             <div class="table-responsive justify-content-center mb-5">
@@ -43,7 +46,6 @@
                                 </td>
                             </tr>
                         @endforeach
-
                     </tbody>
                 </table>
             </div>
@@ -60,7 +62,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="insertDataKantor">
+                    <form id="insertData" method="post" action="/nilaipeserta" enctype="multipart/form-data">
+                        @csrf
                         <div class="mb-3">
                             <label for="nama">Nama Peserta</label>
                             <input type="text" name="nama" id="nama" class="form-control"

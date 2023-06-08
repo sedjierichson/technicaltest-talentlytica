@@ -33,7 +33,16 @@ class NilaiPesertaController extends Controller
      */
     public function store(StoreNilaiPesertaRequest $request)
     {
-        //
+        $validatedData = $request->validate([
+            'nama' => 'required',
+            'email' => 'required|email',
+            'nilai_x' => 'required',
+            'nilai_y' => 'required',
+            'nilai_z' => 'required',
+            'nilai_w' => 'required'
+        ]);
+        NilaiPeserta::create($validatedData);
+        return redirect('/nilaipeserta')->with('success', 'New post has been added!');
     }
 
     /**
