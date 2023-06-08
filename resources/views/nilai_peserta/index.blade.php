@@ -137,25 +137,37 @@
                         <input type="email" name="email" id="email" class="form-control"
                             placeholder="Masukkan email" required>
                     </div>
-                    <div class="mb-3">
-                        <label for="nilai_x">Nilai X</label>
-                        <input type="number" min="1" max="33" name="nilai_x" id="nilai_x"
-                            class="form-control" placeholder="Masukkan nilai x" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="nilai_y">Nilai Y</label>
-                        <input type="number" min="1" max="23" name="nilai_y" id="nilai_y"
-                            class="form-control" placeholder="Masukkan nilai y" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="nilai_z">Nilai Z</label>
-                        <input type="number" min="1" max="18" name="nilai_z" id="nilai_z"
-                            class="form-control" placeholder="Masukkan nilai z" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="nilai_w">Nilai W</label>
-                        <input type="number" min="1" max="13" name="nilai_w" id="nilai_w"
-                            class="form-control" placeholder="Masukkan nilai w" required>
+                    <div class="table-responsive justify-content-center mb-5">
+                        <table class="table table-bordered text-center pt-3" id="listTable">
+                            <thead style="background-color: #363636; color:#ffffff;">
+                                <tr>
+                                    <th class="col" scope="col">Aspek</th>
+                                    <th class="col" scope="col">1</th>
+                                    <th class="col" scope="col">2</th>
+                                    <th class="col" scope="col">3</th>
+                                    <th class="col" scope="col">4</th>
+                                    <th class="col" scope="col">5</th>
+                                </tr>
+                            </thead>
+                            <tbody id="memberKategori">
+                                <tr>
+                                    <td>Aspek Inteligensi</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Aspek Numerical</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -224,13 +236,26 @@
         $(document).on('click', '.info', function(event) {
             event.preventDefault();
             editEvent = event;
-            $('#laporanModal').modal('show');
+            var aspekInteligensi = Math.round((($(this).data('nilaix') * 0.4) + ($(this).data('nilaiy') *
+                0.6)) / 2);
+            var aspekNumerical = Math.round((($(this).data('nilaiz') * 0.3) + ($(this).data(
+                'nilaiw') * 0.7)) / 2);
+            console.log(aspekInteligensi);
+            console.log(aspekNumerical);
+            $('#laporanModal')
+                .modal(
+                    'show');
             $('#laporanModal #nama').val($(this).data('nama'));
-            $('#laporanModal #email').val($(this).data('email'));
+            $('#laporanModal #email').val(
+                $(this).data(
+                    'email'));
             $('#laporanModal #nilai_x').val($(this).data('nilaix'));
-            $('#laporanModal #nilai_y').val($(this).data('nilaiy'));
+            $(
+                '#laporanModal #nilai_y').val($(
+                this).data('nilaiy'));
             $('#laporanModal #nilai_z').val($(this).data('nilaiz'));
-            $('#laporanModal #nilai_w').val($(this).data('nilaiw'));
+            $(
+                '#laporanModal #nilai_w').val($(this).data('nilaiw'));
         });
         $(document).on('click', '.edit', function(event) {
             event.preventDefault();
