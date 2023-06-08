@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreNilaiPesertaRequest;
-use App\Http\Requests\UpdateNilaiPesertaRequest;
 use App\Models\NilaiPeserta;
+use Illuminate\Http\Request;
 
 class NilaiPesertaController extends Controller
 {
@@ -42,7 +41,7 @@ class NilaiPesertaController extends Controller
             'nilai_w' => 'required'
         ]);
         NilaiPeserta::create($validatedData);
-        return redirect('/nilaipeserta')->with('success', 'New post has been added!');
+        return redirect('/nilaipeserta')->with('success', 'Data peserta berhasil ditambahkan');
     }
 
     /**
@@ -72,8 +71,13 @@ class NilaiPesertaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(NilaiPeserta $nilaiPeserta)
+    public function destroy(NilaiPeserta $nilai)
     {
-        //
+        return $nilai->nama;
+        // NilaiPeserta::where('id', $nilaiPeserta->id)->delete();
+        if (NilaiPeserta::destroy($nilai)){
+            return redirect('/nilaipeserta')->with('success', 'Data berhasil dihapus!');
+        }
+        return redirect('/nilaipeserta')->with('error', 'Coba lagi!');
     }
 }
