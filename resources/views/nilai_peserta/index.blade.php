@@ -310,6 +310,7 @@
                 data: form,
                 success: function(response) {
                     console.log(response);
+                    location.href = "/nilaipeserta";
                 },
                 error: function(request, status, error) {
                     console.log(error);
