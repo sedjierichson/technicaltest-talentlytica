@@ -29,6 +29,6 @@ Route::get('/dashboard', function(){
         'title' => 'Beranda',
         'active' => 'home'
     ]);
-}) -> middleware('auth')->middleware('is_admin');;
+})->middleware('is_admin');;
 
 Route::resource('/nilaipeserta', NilaiPesertaController::class)-> middleware('auth');

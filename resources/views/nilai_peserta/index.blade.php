@@ -219,6 +219,7 @@
 @section('included-js')
     <script type="text/javascript">
         var editEvent;
+        var table = $('#listTable').DataTable();
         $(document).on('click', '.info', function(event) {
             event.preventDefault();
             editEvent = event;
